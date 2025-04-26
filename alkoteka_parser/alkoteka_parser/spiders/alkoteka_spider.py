@@ -30,13 +30,6 @@ class AlkotekaApiSpider(scrapy.Spider):
             original_price = float(item.get("prev_price", current_price))
             discount_percentage = round((1 - current_price / original_price) * 100) if original_price > current_price else None
 
-            metadata = {}
-            for label in item.get("filter_labels", []):
-                key = "volume"
-                value = label["title"]
-                metadata[key] = value
-
-
             category_hierarchy = []
             category = item.get("category")
             while category:
